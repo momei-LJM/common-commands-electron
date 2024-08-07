@@ -4,7 +4,7 @@ import { TCmdItem } from "./types";
 import { getCmdListGet, setCmdListGet } from "../storage";
 import OperateBar from "./OperateBar";
 const defaultValue = { cmd: "", result: "", remark: "" };
-export default function Pannel() {
+export const Pannel: React.FC = () => {
   const [cmds, setCmds] = useState<TCmdItem[]>(
     getCmdListGet<TCmdItem[]>() || []
   );
@@ -42,4 +42,5 @@ export default function Pannel() {
       ))}
     </>
   );
-}
+};
+export default Pannel;

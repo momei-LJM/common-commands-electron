@@ -5,7 +5,7 @@ import { invoke } from "../api";
 import { getCmdListGet } from "../storage";
 import { TCmdItem } from "./types";
 
-export default function OperateBar({ onAdd }: { onAdd: () => void }) {
+export const OperateBar: React.FC<{ onAdd: () => void }> = ({ onAdd }) => {
   const exportJson = async () => {
     await invoke("exportJson", getCmdListGet<TCmdItem[]>() || []);
     alert("success");
@@ -25,4 +25,5 @@ export default function OperateBar({ onAdd }: { onAdd: () => void }) {
       </Button>
     </div>
   );
-}
+};
+export default OperateBar;

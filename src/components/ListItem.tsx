@@ -11,7 +11,7 @@ interface TEvents {
   changeRemark: (remark: string) => void;
 }
 
-export default function ListItem(props: { data: TCmdItem } & TEvents) {
+export const ListItem: React.FC<{ data: TCmdItem } & TEvents> = (props) => {
   const { data, changeCmd, changeResult, changeRemark } = props;
 
   const refreshResult = async () => {
@@ -63,4 +63,5 @@ export default function ListItem(props: { data: TCmdItem } & TEvents) {
       </div>
     </>
   );
-}
+};
+export default ListItem;
