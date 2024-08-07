@@ -24,14 +24,17 @@ export const Pannel: React.FC = () => {
     setCmds(newCmds);
   };
   const onAdd = () => {
-    const newCmds = [{ ...defaultValue, id: cmds.length + 1 }, ...cmds];
+    const newCmds = [
+      { ...defaultValue, id: cmds.length + 1 },
+      ...cmds.map((i) => ({ ...i })),
+    ];
     setStateSore(newCmds);
   };
   return (
     <>
       <OperateBar onAdd={onAdd} />
       {cmds?.map((cmdInfo, index) => (
-        <div className="mt-3" key={cmdInfo.id}>
+        <div className="mt-3" key={index}>
           <ListItem
             data={cmdInfo}
             changeCmd={(cmd) => onChange(cmd, index, "cmd")}

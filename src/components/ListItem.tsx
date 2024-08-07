@@ -30,7 +30,7 @@ export const ListItem: React.FC<{ data: TCmdItem } & TEvents> = (props) => {
             label="enter your cmd"
             variant="outlined"
             size="small"
-            defaultValue={data.cmd}
+            value={data.cmd}
             onChange={(e) => changeCmd?.(e.target.value)}
           />
         </Tooltip>
@@ -42,7 +42,7 @@ export const ListItem: React.FC<{ data: TCmdItem } & TEvents> = (props) => {
               variant="outlined"
               size="small"
               key="remark"
-              defaultValue={data.remark}
+              value={data.remark}
               onChange={(e) => changeRemark?.(e.target.value)}
             />
           </Tooltip>
