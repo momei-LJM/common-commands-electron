@@ -1,0 +1,4 @@
+export enum STORAGE_KEY {
+  CMD_LIST_GET = "CMD_LIST_GET",
+  CMD_LIST_SET = "CMD_LIST_SET",
+}
