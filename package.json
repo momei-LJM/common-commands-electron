@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "description": "An executable command panel",
+  "author": {
+    "name": "momei-LJM"
+  },
   "scripts": {
     "start": "chcp 65001 && node .",
     "dev": " vite",

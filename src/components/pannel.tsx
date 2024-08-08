@@ -3,18 +3,14 @@ import ListItem from "./ListItem";
 import { TCmdItem } from "./types";
 import { getCmdListGet, setCmdListGet } from "../storage";
 import OperateBar from "./OperateBar";
-const defaultValue = { cmd: "", result: "", remark: "" };
+const defaultValue = { cmd: "", result: "", remark: "", immediate: false };
 export const Pannel: React.FC = () => {
   const [cmds, setCmds] = useState<TCmdItem[]>(
     getCmdListGet<TCmdItem[]>() || []
   );
 
-  const onChange = (
-    data: string,
-    index: number,
-    type: "result" | "cmd" | "remark"
-  ) => {
-    cmds[index][type] = data;
+  const onChange = (data: TCmdItem, index: number) => {
+    cmds[index] = data;
     const newCmds = [...cmds];
     setStateSore(newCmds);
   };
@@ -24,10 +20,7 @@ export const Pannel: React.FC = () => {
     setCmds(newCmds);
   };
   const onAdd = () => {
-    const newCmds = [
-      { ...defaultValue, id: cmds.length + 1 },
-      ...cmds.map((i) => ({ ...i })),
-    ];
+    const newCmds = [{ ...defaultValue }, ...cmds.map((i) => ({ ...i }))];
     setStateSore(newCmds);
   };
   return (
@@ -35,12 +28,7 @@ export const Pannel: React.FC = () => {
       <OperateBar onAdd={onAdd} />
       {cmds?.map((cmdInfo, index) => (
         <div className="mt-3" key={index}>
-          <ListItem
-            data={cmdInfo}
-            changeCmd={(cmd) => onChange(cmd, index, "cmd")}
-            changeResult={(res) => onChange(res, index, "result")}
-            changeRemark={(remark) => onChange(remark, index, "remark")}
-          />
+          <ListItem data={cmdInfo} onChange={(data) => onChange(data, index)} />
         </div>
       ))}
     </>

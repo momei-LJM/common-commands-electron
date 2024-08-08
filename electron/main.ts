@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { useHandlers } from "./handlers/useHandlers";
 
+app.commandLine.appendSwitch("lang", "zh-CN");
 // const require = createRequire(import.meta.url);
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
