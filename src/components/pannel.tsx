@@ -23,12 +23,22 @@ export const Pannel: React.FC = () => {
     const newCmds = [{ ...defaultValue }, ...cmds.map((i) => ({ ...i }))];
     setStateSore(newCmds);
   };
+
+  const onRemove = (idx: number) => {
+    const newCmds = cmds;
+    newCmds.splice(idx, 1);
+    setStateSore([...newCmds]);
+  };
   return (
     <>
       <OperateBar onAdd={onAdd} />
       {cmds?.map((cmdInfo, index) => (
         <div className="mt-3" key={index}>
-          <ListItem data={cmdInfo} onChange={(data) => onChange(data, index)} />
+          <ListItem
+            data={cmdInfo}
+            onChange={(data) => onChange(data, index)}
+            onRemove={() => onRemove(index)}
+          />
         </div>
       ))}
     </>

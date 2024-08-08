@@ -7,11 +7,12 @@ import { TCmdItem } from "./types";
 import { Checkbox, FormControlLabel, Tooltip } from "@mui/material";
 interface TEvents {
   onChange: (info: TCmdItem) => void;
+  onRemove: (info: TCmdItem) => void;
 }
 
 export const ListItem: React.FC<{ data: TCmdItem } & TEvents> = memo(
   (props) => {
-    const { data, onChange } = props;
+    const { data, onChange, onRemove } = props;
 
     const refreshResult = async () => {
       const result = await invoke("excCmd", data.cmd);
@@ -72,6 +73,14 @@ export const ListItem: React.FC<{ data: TCmdItem } & TEvents> = memo(
             onClick={refreshResult}
           >
             call
+          </Button>
+          <Button
+            className="!ml-1 w-[84px]"
+            variant="contained"
+            onClick={() => onRemove({ ...data })}
+            color="error"
+          >
+            remove
           </Button>
         </div>
       </>

@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, Menu } from "electron";
 // import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -32,8 +32,11 @@ let win: BrowserWindow | null;
 
 function createWindow() {
   win = new BrowserWindow({
-    // width: 500,
+    width: 1100,
     // height: 800,
+    opacity: 1,
+    titleBarStyle: "default",
+    // alwaysOnTop: true,
     icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
     webPreferences: {
       preload: path.join(__dirname, "preload.mjs"),
@@ -52,7 +55,7 @@ function createWindow() {
     win.loadFile(path.join(RENDERER_DIST, "index.html"));
   }
 }
-
+Menu.setApplicationMenu(null);
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.
